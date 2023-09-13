@@ -1,0 +1,11 @@
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "dateOfBirth": "01-15-1990",
+  "streetAddress": "123 Main St",
+  "city": "Example City",
+  "state": "CA",
+  "zipCode": "12345",
+  "username": "johndoe123",
+  "password": "Password123@"
+}
