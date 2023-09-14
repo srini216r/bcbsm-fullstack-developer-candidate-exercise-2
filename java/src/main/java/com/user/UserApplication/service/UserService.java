@@ -9,6 +9,6 @@ import java.text.ParseException;
 
 public interface UserService {
     User registerOrUpdateUser(UserDto userDto) throws ParseException;
-    User login(String username, String password);
+    User authenticateUser(String username, String password);
 
 }

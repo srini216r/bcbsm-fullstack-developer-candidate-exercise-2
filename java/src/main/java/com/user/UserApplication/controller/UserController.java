@@ -31,8 +31,17 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login() {
-         return new ResponseEntity<>("Login successful", HttpStatus.OK);
+    public ResponseEntity<?> login(@RequestBody UserDto userDto) {
+        // Authenticate the user
+        User authenticatedUser = userService.authenticateUser(userDto.getUsername(), userDto.getPassword());
+
+        if (authenticatedUser != null) {
+            // Authentication successful, return user details
+            return new ResponseEntity<>(authenticatedUser, HttpStatus.OK);
+        } else {
+            // Authentication failed, return an appropriate response
+            return new ResponseEntity<>("Authentication failed", HttpStatus.UNAUTHORIZED);
+        }
     }
 
 

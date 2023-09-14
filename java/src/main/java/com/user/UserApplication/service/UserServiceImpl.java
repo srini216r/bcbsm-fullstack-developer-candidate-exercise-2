@@ -37,20 +37,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User login(String username, String password) {
-        // Use Spring Security's AuthenticationManager to authenticate the user.
-      //  UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
-       // Authentication authentication = authenticationManager.authenticate(token);
+    public User authenticateUser(String username, String password) {
 
-        // If authentication is successful, return the authenticated user.
-       // if (authentication.isAuthenticated()) {
-         //   return (User) authentication.getPrincipal();
-       // }
+        // Check if a user with the provided username already exists
+        User existingUser = userRepository.findByUsername(username);
+        if (existingUser != null && existingUser.getPassword().equals(password)) {
+            // Passwords match, return the authenticated user
+            return existingUser;
+        }
 
-        // If authentication fails, you can throw an exception or return null.
-       // throw new AuthenticationException("Authentication failed");
-        return new User();
+        // Authentication failed, return null
+        return null;
     }
+
 
 
 }
